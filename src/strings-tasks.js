@@ -231,8 +231,16 @@ function endsWith(str, substr) {
  *   formatTime(0, 45) => "00:45"
  *   formatTime(0, 0) => "00:00"
  */
-function formatTime(/* minutes, seconds */) {
-  throw new Error('Not implemented');
+function formatTime(minutes, seconds) {
+  let mm;
+  let ss;
+  if (minutes < 10) {
+    mm = minutes.toString().padStart(2, '0');
+  } else mm = minutes.toString();
+  if (seconds < 10) {
+    ss = seconds.toString().padStart(2, '0');
+  } else ss = seconds.toString();
+  return mm.concat(':', ss);
 }
 
 /**
@@ -245,8 +253,12 @@ function formatTime(/* minutes, seconds */) {
  *   reverseString('abcdef') => 'fedcba'
  *   reverseString('12345') => '54321'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  let newString = '';
+  for (let i = str.length - 1; i >= 0; i - 1) {
+    newString += str[i];
+  }
+  return newString;
 }
 
 /**
@@ -260,8 +272,8 @@ function reverseString(/* str */) {
  *   orderAlphabetically('textbook') => 'bekoottx'
  *   orderAlphabetically('abc123xyz') => '123abcxyz'
  */
-function orderAlphabetically(/* str */) {
-  throw new Error('Not implemented');
+function orderAlphabetically(str) {
+  return str.split('').sort().join('');
 }
 
 /**
