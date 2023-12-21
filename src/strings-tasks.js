@@ -152,8 +152,15 @@ function repeatString(str, times) {
  *   removeFirstOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeFirstOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeFirstOccurrences(str, value) {
+  const indexValue = str.indexOf(value);
+  let newStr;
+  if (indexValue >= 0) {
+    newStr = str
+      .slice(0, indexValue)
+      .concat(str.slice(indexValue + value.length, str.length));
+  } else newStr = str;
+  return newStr;
 }
 
 /**
@@ -168,8 +175,15 @@ function removeFirstOccurrences(/* str, value */) {
  *   removeLastOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeLastOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeLastOccurrences(str, value) {
+  const indexValue = str.lastIndexOf(value);
+  let newStr;
+  if (indexValue >= 0) {
+    newStr = str
+      .slice(0, indexValue)
+      .concat(str.slice(indexValue + value.length, str.length));
+  } else newStr = str;
+  return newStr;
 }
 
 /**
@@ -184,8 +198,16 @@ function removeLastOccurrences(/* str, value */) {
  *   sumOfCodes('') => 0
  *   sumOfCodes() => 0
  */
-function sumOfCodes(/* str */) {
-  throw new Error('Not implemented');
+function sumOfCodes(str) {
+  let sum = 0;
+  if (typeof str !== 'string') {
+    sum = 0;
+  } else {
+    for (let i = 0; i < str.length; i += 1) {
+      sum += str.charCodeAt(i);
+    }
+  }
+  return sum;
 }
 
 /**
@@ -253,13 +275,12 @@ function formatTime(minutes, seconds) {
  *   reverseString('abcdef') => 'fedcba'
  *   reverseString('12345') => '54321'
  */
-function reverseString(/* str */) {
-  // let newString = '';
-  // for (let i = str.length - 1; i >= 0; i - 1) {
-  //   newString += str[i];
-  // }
-  // return newString;
-  throw new Error('Not implemented');
+function reverseString(str) {
+  let newString = '';
+  for (let i = str.length - 1; i >= 0; i -= 1) {
+    newString += str[i];
+  }
+  return newString;
 }
 
 /**
@@ -307,8 +328,15 @@ function containsSubstring(str, substring) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  let count = 0;
+  const Vowels = ['a', 'e', 'i', 'o', 'u', 'y', 'A', 'E', 'I', 'O', 'U', 'Y'];
+  for (let i = 0; i < str.length; i += 1) {
+    if (Vowels.includes(str[i])) {
+      count += 1;
+    }
+  }
+  return count;
 }
 
 /**
@@ -357,18 +385,21 @@ function isPalindrome(str) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  // const sentenceArr = sentence.split(' ');
-  // let length = 0;
-  // let result;
-  // for (let i = 0; i < sentenceArr.length; i + 1) {
-  //   if (sentenceArr[i].length > length) {
-  //     length = sentenceArr[i].length;
-  //     result = sentenceArr[i];
-  //   }
-  // }
-  // return result;
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  let length = 0;
+  let result;
+  if (sentence.length === 0) {
+    result = sentence;
+  } else {
+    const sentenceArr = sentence.split(' ');
+    for (let i = 0; i < sentenceArr.length; i += 1) {
+      if (sentenceArr[i].length > length) {
+        length = sentenceArr[i].length;
+        result = sentenceArr[i];
+      }
+    }
+  }
+  return result;
 }
 
 /**
@@ -381,8 +412,8 @@ function findLongestWord(/* sentence */) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  throw new Error('Not implemented');
+function reverseWords(str) {
+  return str.split('').reverse().join('').split(' ').reverse().join(' ');
 }
 
 /**
@@ -481,8 +512,15 @@ function extractEmails(str) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const input = ' ?!ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const output = ' ?!NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  let result = '';
+  for (let i = 0; i < str.length; i += 1) {
+    const index = input.indexOf(str[i]);
+    result += output[index];
+  }
+  return result;
 }
 
 /**
